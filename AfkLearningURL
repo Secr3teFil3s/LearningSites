@@ -16,35 +16,21 @@ local function _0xE(_0xF)
     for _0x13 = _0x11, 1, -1 do
         _0x12 = _0x12 + 1
 
-        local _0x14 =
-            _0xB.bxor(
-                _0xF[_0x13],
-                0xA5
-            )
+        local _0x14 = _0xB.bxor(
+            _0xF[_0x13],
+            0xA5
+        )
 
-        local _0x15 =
-            (
-                _0x14
-                -
-                (
-                    (_0x12 * 17)
-                    %
-                    251
-                )
-            )
-            %
-            256
+        local _0x15 = (
+            _0x14 -
+            ((_0x12 * 17) % 251)
+        ) % 256
 
-        local _0x16 =
-            (
-                73
-                +
-                (_0x12 * 29)
-                +
-                ((_0x12 % 7) * 11)
-            )
-            %
-            256
+        local _0x16 = (
+            73 +
+            (_0x12 * 29) +
+            ((_0x12 % 7) * 11)
+        ) % 256
 
         _0x10[#_0x10 + 1] =
             _0xC.char(
@@ -55,38 +41,49 @@ local function _0xE(_0xF)
             )
     end
 
-    return _0xD.concat(
-        _0x10
+    return _0xD.concat(_0x10)
+end
+
+local _0x17 = _0xE(_0xA)
+
+-- Baixar conteúdo
+local _success, _source = pcall(function()
+    return game:HttpGet(_0x17)
+end)
+
+if not _success then
+    error(
+        "Erro ao baixar o script: "
+        .. tostring(_source)
     )
 end
 
-local _0x17 =
-    _0xE(
-        _0xA
+if not _source or _source == "" then
+    error(
+        "O Pastebin retornou conteúdo vazio."
     )
+end
 
-local _0x18 =
-    game[
-        _0xC.char(
-            72,
-            116,
-            116,
-            112,
-            71,
-            101,
-            116
-        )
-    ]
+-- Compilar conteúdo
+local _function, _compileError =
+    loadstring(_source)
 
-local _0x19 =
-    _0x18(
-        game,
-        _0x17
+if not _function then
+    error(
+        "Erro ao compilar o conteúdo baixado:\n"
+        .. tostring(_compileError)
+        .. "\n\nInicio do conteúdo recebido:\n"
+        .. string.sub(_source, 1, 300)
     )
+end
 
-local _0x1A =
-    loadstring(
-        _0x19
+-- Executar
+local _runSuccess, _runError =
+    pcall(_function)
+
+if not _runSuccess then
+    error(
+        "O script foi carregado, mas deu erro ao executar:\n"
+        .. tostring(_runError)
     )
-
-_0x1A()
+end
